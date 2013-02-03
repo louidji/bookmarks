@@ -11,6 +11,7 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     jdbc,
     anorm
+    //"com.typesafe.slick" % "slick_2.10" % "1.0.0-RC2"
   )
 
 

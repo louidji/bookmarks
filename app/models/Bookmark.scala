@@ -7,7 +7,7 @@ package models
  * Time: 00:34
  * To change this template use File | Settings | File Templates.
  */
-case class Bookmark (id: Long, title: String, url: String, details: String, category: Category) {
+case class Bookmark(id: Long, title: String, url: String, details: String, category: Option[Category]) {
 
   object Bookmark {
 
@@ -19,4 +19,5 @@ case class Bookmark (id: Long, title: String, url: String, details: String, cate
 
 
   }
+
 }

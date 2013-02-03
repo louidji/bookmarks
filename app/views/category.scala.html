@@ -1,5 +1,5 @@
 @(categories: List[Category], categoryForm: Form[String])
-
+@import helper.twitterBootstrap._
 @import helper._
 
 @main("Todo list") {
@@ -11,7 +11,7 @@
     <li>
         @category.label
 
-        @form(routes.Application.deleteCategory(category.id)) {
+        @form(routes.Categories.delete(category.id)) {
         <input type="submit" value="Delete">
         }
     </li>
@@ -20,7 +20,7 @@
 
 <h2>Add a new task</h2>
 
-@form(routes.Application.newCategory) {
+@form(routes.Categories.add) {
 
 @inputText(categoryForm("label"))
 

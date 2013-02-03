@@ -1,7 +1,63 @@
-@(message: String)
+@(
+categoryForm: Form[models.Category],
+bookmarks: List[models.Bookmark],
+categories: List[models.Category]
+)
 
-@main("Welcome to Play 2.1") {
+@import helper._
+@import helper.twitterBootstrap._
+@import controllers._
 
-@play20.welcome(message)
 
+@main(Messages("index.title")) {
+
+<h1>@Messages("index.head")</h1>
+<!-- Formulaire de saisie : Catégories -->
+@helper.form(action = routes.Categories.add) {
+<fieldset>
+    <legend>@Messages("index.category.new")</legend>
+        @helper.inputText(categoryForm("label"))
+    <div class="actions">
+        <button type="submit" class="btn primary">@Messages("index.category.add")</button>
+    </div>
+</fieldset>
+}
+<!-- Liste des Catégories -->
+<ul>
+    @for(category <- categories) {
+    <li>@category.id @category.label</li>
+    }
+</ul>
+
+<!-- Formulaire de saisie : Bookmarks -->
+
+<fieldset>
+    <legend>@Messages("index.bookmark.new")</legend>
+    <!--<form method="post" action="@routes.Bookmarks.add()">-->
+    <form method="post" action="/bookmark/add">
+        <input name="title" placeholder="title">
+        <input name="url" placeholder="url">
+        <input name="details" placeholder="details">
+
+        <select size="1" name="category.id">
+            @for(category <- categories) {
+            <option value="@category.id">@category.label</option>
+            }
+        </select>
+        <div class="actions">
+            <button type="submit" class="btn primary">@Messages("index.bookmark.add")</button>
+        </div>
+    </form>
+</fieldset>
+<!-- Liste des Bookmarks -->
+<ul>
+    @for(bookmark <- bookmarks) {
+    <li>@bookmark.title : <a href="@bookmark.url">@bookmark.url</a> :
+        bookmark.category match {
+            case Some(category) => category.label
+            case None => None
+        }
+    </li>
+    }
+</ul>
 }

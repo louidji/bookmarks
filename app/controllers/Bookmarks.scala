@@ -13,13 +13,14 @@ import models._
  * To change this template use File | Settings | File Templates.
  */
 object Bookmarks extends Controller {
-  def add = Action { implicit request =>
-    bookmarkForm.bindFromRequest.fold(
-      errors => TODO, // BadRequest(views.html.bookmark.form(errors)),
-      bookmark => TODO // { Save; Ok(views.html.bookmark.summary(bookmark) }
-    )
+  def add = Action {
+    implicit request =>
+      bookmarkForm.bindFromRequest.fold(
+        errors => TODO, // BadRequest(views.html.bookmark.form(categoryErrors)),
+        bookmark => TODO // { Save; Ok(views.html.bookmark.summary(bookmark) }
+      )
 
-    Redirect(routes.Application.index())
+      Redirect(routes.Application.index())
   }
 
   def bookmarks = TODO
@@ -28,7 +29,7 @@ object Bookmarks extends Controller {
 
   val bookmarkForm = Form(
     mapping(
-      "id" -> longNumber,
+      "id" -> optional(longNumber),
       "title" -> nonEmptyText,
       "url" -> nonEmptyText,
       "details" -> text(minLength = 6),

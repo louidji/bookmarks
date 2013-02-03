@@ -7,17 +7,21 @@ package models
  * Time: 00:34
  * To change this template use File | Settings | File Templates.
  */
-case class Bookmark(id: Long, title: String, url: String, details: String, category: Option[Category]) {
+case class Bookmark(id: Option[Long], title: String, url: String, details: String, category: Option[Category])
 
   object Bookmark {
 
     def all(): List[Bookmark] = Nil
 
-    def create(label: String) {}
-
     def delete(id: Long) {}
 
+    def save(bookmark: Bookmark) : Bookmark = {
+      //TODO
 
-  }
+      bookmark
+    }
+
+
+
 
 }

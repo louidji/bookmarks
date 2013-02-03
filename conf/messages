@@ -1,0 +1,8 @@
+index.title=Bookmarks Application
+index.head=Bookmarks Management
+
+index.category.new=New Category
+index.category.add=Add Category
+
+index.bookmark.new=New Bookmark
+index.bookmark.add=Add Bookmark

@@ -4,6 +4,7 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import models._
+import anorm.{Pk, NotAssigned}
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,11 +30,11 @@ object Bookmarks extends Controller {
 
   val bookmarkForm = Form(
     mapping(
-      "id" -> optional(number),
-      "title" -> nonEmptyText,
-      "url" -> nonEmptyText,
-      "details" -> text(minLength = 6),
-      "category" -> optional[Category](Categories.categoryForm.mapping)
+      "id" -> ignored(NotAssigned: Pk[Int]),
+      "title" -> nonEmptyText(4, 50),
+      "url" -> nonEmptyText(4, 100),
+      "details" -> optional(text(maxLength=255)),
+      "bookmark" -> optional(number)
     )(Bookmark.apply)(Bookmark.unapply)
   )
 }

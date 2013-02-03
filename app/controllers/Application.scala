@@ -12,7 +12,7 @@ object Application extends Controller {
 
   def index = Action {
     implicit request =>
-    Ok(views.html.index(Categories.categoryForm, Nil, Category.all()))
+    Ok(views.html.index(Categories.categoryForm, Bookmarks.bookmarkForm, Nil, Category.all()))
   }
 
 

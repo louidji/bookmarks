@@ -20,7 +20,7 @@ case class Category(id: Pk[Int] = NotAssigned, label: String)
 object Category {
 
   /**
-   * Parse a Company from a ResultSet
+   * Parse a Category from a ResultSet
    */
   val simple = {
     get[Pk[Int]]("category.id") ~
@@ -66,7 +66,7 @@ object Category {
   private def update(category: Category): Category = {
     DB.withConnection {
       implicit connection => {
-        SQL("update category = {category} where id = {id}").on('label -> category.label, 'id -> category.id).executeUpdate()
+        SQL("update category set label = {label} where id = {id}").on('label -> category.label, 'id -> category.id).executeUpdate()
         category
       }
     }

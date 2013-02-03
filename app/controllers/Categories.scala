@@ -23,12 +23,12 @@ object Categories extends Controller {
         errors => {
           Logger.error("Error Save " + errors)
           //Redirect(routes.Application.index())
-          BadRequest(views.html.index(errors, Nil, Category.all()))
-        }, // BadRequest(views.html.category.form(categoryErrors)),
+          BadRequest(views.html.index(errors, Bookmarks.bookmarkForm, Nil, Category.all()))
+        }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         category => {
           Category.save(category)
           Redirect(routes.Application.index()).flashing("success" -> "Category %s has been created".format(category.label))
-        } // { Save; Ok(views.html.category.summary(bookmark) }
+        } // { Save; Ok(views.html.bookmark.summary(bookmark) }
       )
 
 

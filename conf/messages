@@ -6,3 +6,10 @@ index.category.add=Add Category
 
 index.bookmark.new=New Bookmark
 index.bookmark.add=Add Bookmark
+
+label=Category name
+title=Title
+url=URL
+details=Details
+category=Bookmarks Category
+

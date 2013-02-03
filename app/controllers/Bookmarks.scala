@@ -25,11 +25,11 @@ object Bookmarks extends Controller {
 
   def bookmarks = TODO
 
-  def delete(id: Long) = TODO
+  def delete(id: Int) = TODO
 
   val bookmarkForm = Form(
     mapping(
-      "id" -> optional(longNumber),
+      "id" -> optional(number),
       "title" -> nonEmptyText,
       "url" -> nonEmptyText,
       "details" -> text(minLength = 6),

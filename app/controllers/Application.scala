@@ -11,7 +11,8 @@ import play.api.data.Forms._
 object Application extends Controller {
 
   def index = Action {
-    Ok(views.html.index(Categories.categoryForm, Nil, Nil))
+    implicit request =>
+    Ok(views.html.index(Categories.categoryForm, Nil, Category.all()))
   }
 
 

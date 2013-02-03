@@ -3,18 +3,18 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                               controllers.Application.index
 
 # Categories
-GET      /categories                   controllers.Categories.categories
-POST     /categories                   controllers.Categories.add
-POST     /categories/:id/delete        controllers.Categories.delete(id: Long)
+GET      /categories                    controllers.Categories.categories
+POST     /categories                    controllers.Categories.add
+#POST     /categories/:id/delete         controllers.Categories.delete(id: Int)
 
 # Bookmarks
 
-GET      /bookmarks                   controllers.Bookmarks.bookmarks
-POST     /bookmarks                   controllers.Bookmarks.add
-POST     /bookmarks/:id/delete        controllers.Bookmarks.delete(id: Long)
+GET      /bookmarks                     controllers.Bookmarks.bookmarks
+POST     /bookmarks                     controllers.Bookmarks.add
+#POST     /bookmarks/:id/delete          controllers.Bookmarks.delete(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file                   controllers.Assets.at(path="/public", file)

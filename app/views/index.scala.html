@@ -2,7 +2,7 @@
 categoryForm: Form[models.Category],
 bookmarks: List[models.Bookmark],
 categories: List[models.Category]
-)
+)(implicit flash: play.api.mvc.Flash)
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -12,6 +12,11 @@ categories: List[models.Category]
 @main(Messages("index.title")) {
 
 <h1>@Messages("index.head")</h1>
+@flash.get("success").map { message =>
+<div class="alert-message warning">
+    <strong>Done!</strong> @message
+</div>
+}
 <!-- Formulaire de saisie : Catégories -->
 @helper.form(action = routes.Categories.add) {
 <fieldset>

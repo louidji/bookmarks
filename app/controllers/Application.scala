@@ -8,7 +8,7 @@ import play.api.data.Forms._
 object Application extends Controller {
   
   def index = Action {
-    Redirect(routes.Application.categories())
+    Ok(views.html.index("Your new application is ready."))
   }
 
   def categories = TODO

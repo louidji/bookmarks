@@ -1,0 +1,31 @@
+@(categories: List[Category], categoryForm: Form[String])
+
+@import helper._
+
+@main("Todo list") {
+
+<h1>@categories.size category/(ies)</h1>
+
+<ul>
+    @categories.map { category =>
+    <li>
+        @category.label
+
+        @form(routes.Application.deleteCategory(category.id)) {
+        <input type="submit" value="Delete">
+        }
+    </li>
+    }
+</ul>
+
+<h2>Add a new task</h2>
+
+@form(routes.Application.newCategory) {
+
+@inputText(categoryForm("label"))
+
+<input type="submit" value="Create">
+
+}
+
+}

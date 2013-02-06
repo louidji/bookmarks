@@ -5,7 +5,7 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.Logger
 import anorm.{Pk, NotAssigned}
-import models.Category
+import models.{Bookmark, Category}
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,24 +15,28 @@ import models.Category
  * To change this template use File | Settings | File Templates.
  */
 object Categories extends Controller {
-  def categories = TODO
+  def categories = Action {
+    implicit request =>
+      Ok(views.html.category(Categories.categoryForm,  Category.all()))
+  }
 
-  def add = Action {
+
+  def create = Action {
     implicit request =>
       categoryForm.bindFromRequest.fold(
         errors => {
           Logger.error("Error Save " + errors)
           //Redirect(routes.Application.index())
-          BadRequest(views.html.index(errors, Bookmarks.bookmarkForm, Nil, Category.all()))
+          BadRequest(views.html.category(errors,  Category.all()))
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         category => {
           Category.save(category)
-          Redirect(routes.Application.index()).flashing("success" -> "Category %s has been created".format(category.label))
+          Redirect(routes.Categories.categories()).flashing("success" -> "Category %s has been created".format(category.label))
         } // { Save; Ok(views.html.bookmark.summary(bookmark) }
       )
-
-
   }
+
+
 
   def delete(id: Int) = TODO
 

@@ -7,13 +7,13 @@ GET     /                               controllers.Application.index
 
 # Categories
 GET      /categories                    controllers.Categories.categories
-POST     /categories                    controllers.Categories.add
-#POST     /categories/:id/delete         controllers.Categories.delete(id: Int)
+POST     /categories                    controllers.Categories.create
+#POST     /categories/:id/delete        controllers.Categories.delete(id: Int)
 
 # Bookmarks
 
-GET      /bookmarks                     controllers.Bookmarks.bookmarks
-POST     /bookmarks                     controllers.Bookmarks.add
+GET      /bookmarks                      controllers.Bookmarks.bookmarks
+POST     /bookmarks                      controllers.Bookmarks.create
 #POST     /bookmarks/:id/delete          controllers.Bookmarks.delete(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path

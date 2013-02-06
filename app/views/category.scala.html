@@ -1,0 +1,35 @@
+@(
+categoryForm: Form[models.Category],
+categories: List[models.Category]
+)(implicit flash: play.api.mvc.Flash)
+
+@import helper._
+@import helper.twitterBootstrap._
+@import controllers._
+
+@main(Messages("index.title")) {
+
+<h1>@Messages("category.head")</h1>
+@flash.get("success").map { message =>
+<div class="alert-message warning">
+    <strong>Done!</strong> @message
+</div>
+}
+<!-- Formulaire de saisie : Catégories -->
+<fieldset>
+    <legend>@Messages("index.category.new")</legend>
+    @form(action = routes.Categories.create) {
+        @inputText(categoryForm("label"))
+    <div class="actions">
+        <button type="submit" class="btn primary">@Messages("index.category.add")</button>
+    </div>
+    }
+</fieldset>
+<!-- Liste des Categories -->
+<ul>
+    @for(category <- categories) {
+    <li>@category.label</li>
+    }
+</ul>
+
+}

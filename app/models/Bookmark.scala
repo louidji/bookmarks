@@ -33,7 +33,7 @@ object Bookmark {
   }
 
   def all(): List[Bookmark] = DB.withConnection { implicit connection =>
-    SQL("select * from bookmark order by label").as(Bookmark.simple *)
+    SQL("select * from bookmark order by title").as(Bookmark.simple *)
   }
 
   def delete(id: Int) {}

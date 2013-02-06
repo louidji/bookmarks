@@ -1,55 +1,13 @@
 @(
-categoryForm: Form[models.Category],
-bookmarkForm: Form[models.Bookmark],
-bookmarks: List[models.Bookmark],
-categories: List[models.Category]
-)(implicit flash: play.api.mvc.Flash)
+bookmarks: List[models.Bookmark]
+)
 
 @import helper._
 @import helper.twitterBootstrap._
-@import controllers._
 
 
 @main(Messages("index.title")) {
-
-<h1>@Messages("index.head")</h1>
-@flash.get("success").map { message =>
-<div class="alert-message warning">
-    <strong>Done!</strong> @message
-</div>
-}
-<!-- Formulaire de saisie : Catégories -->
-
-<fieldset>
-    <legend>@Messages("index.category.new")</legend>
-    @form(action = routes.Categories.add) {
-        @inputText(categoryForm("label"))
-    <div class="actions">
-        <button type="submit" class="btn primary">@Messages("index.category.add")</button>
-    </div>
-    }
-
-</fieldset>
-
-
-<!-- Formulaire de saisie : Bookmarks -->
-
-<fieldset>
-    <legend>@Messages("index.bookmark.new")</legend>
-    @form(action = routes.Bookmarks.add) {
-        @inputText(bookmarkForm("title"))
-        @inputText(bookmarkForm("url"))
-        @textarea(bookmarkForm("details"), args = 'rows -> 3, 'cols -> 50)
-        @select(
-            bookmarkForm("category"),
-            categories.toList.map(v => (v.id.toString, v.label)),
-            '_showConstraints -> false
-        )
-        <div class="actions">
-            <button type="submit" class="btn primary">@Messages("index.bookmark.add")</button>
-        </div>
-    }
-</fieldset>
+<p></p><a href="@routes.Bookmarks.bookmarks">Messages("index.bookmark.link")</a> - <a href="@routes.Categories.categories">Messages("index.category.link")</a></p>
 <!-- Liste des Bookmarks -->
 <ul>
     @for(bookmark <- bookmarks) {

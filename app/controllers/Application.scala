@@ -1,7 +1,7 @@
 package controllers
 
 import play.api._
-import models.Category
+import models._
 
 //import i18n.Messages
 import play.api.mvc._
@@ -11,8 +11,7 @@ import play.api.data.Forms._
 object Application extends Controller {
 
   def index = Action {
-    implicit request =>
-    Ok(views.html.index(Categories.categoryForm, Bookmarks.bookmarkForm, Nil, Category.all()))
+    Ok(views.html.index(Bookmark.all()))
   }
 
 

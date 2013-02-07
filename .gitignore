@@ -16,3 +16,5 @@ dist
 /.target
 /bin
 /.cache
+play.h2.db
+play.trace.db

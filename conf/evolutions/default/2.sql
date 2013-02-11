@@ -8,7 +8,9 @@ CREATE TABLE bookmark (
     title varchar(50) NOT NULL,
     url varchar(100) NOT NULL,
     details varchar(255),
-    PRIMARY KEY (id)
+    categoryId integer NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY(categoryId) REFERENCES category(id)
 );
 
 # --- !Downs

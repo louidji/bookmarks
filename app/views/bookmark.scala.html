@@ -26,7 +26,7 @@ categories: List[models.Category]
         @inputText(bookmarkForm("url"))
         @textarea(bookmarkForm("details"), args = 'rows -> 3, 'cols -> 50)
         @select(
-            bookmarkForm("category"),
+            bookmarkForm("categoryId"),
             categories.toList.map(v => (v.id.toString, v.label)),
             '_showConstraints -> false
         )

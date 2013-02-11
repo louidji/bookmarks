@@ -53,8 +53,8 @@ object Bookmark {
     DB.withConnection {
       implicit connection => {
         // TODO finir le code d'insertion
-        SQL("insert into bookmark(title) values ({title})").on(
-          'title -> bookmark.title
+        SQL("insert into bookmark(title, url, details, categoryId) values ({title}, {url}, {details}, {categoryId})").on(
+          'title -> bookmark.title, 'url -> bookmark.url, 'details -> bookmark.details, 'categoryId -> bookmark.categoryId
         ).executeInsert() match {
           case None => throw new SQLException("Erreur d'insertion")
           case Some(long) =>  Bookmark(anorm.Id(long.asInstanceOf[Int]), bookmark.title, bookmark.url, bookmark.details, bookmark.categoryId)
@@ -68,8 +68,7 @@ object Bookmark {
   private def update(bookmark: Bookmark): Bookmark = {
     DB.withConnection {
       implicit connection => {
-        // TODO finir le code de maj
-        SQL("update bookmark set title = {title} where id = {id}").on('title -> bookmark.title, 'id -> bookmark.id).executeUpdate()
+        SQL("update bookmark set title = {title}, url = {url}, details = {details}, categoryId={categoryId} where id = {id}").on('title -> bookmark.title, 'url -> bookmark.url, 'details -> bookmark.details, 'categoryId -> bookmark.categoryId, 'id -> bookmark.id).executeUpdate()
         bookmark
       }
     }

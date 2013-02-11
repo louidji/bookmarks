@@ -11,11 +11,14 @@ bookmarks: List[models.Bookmark]
 <!-- Liste des Bookmarks -->
 <ul>
     @for(bookmark <- bookmarks) {
-    <li>@bookmark.title : <a href="@bookmark.url">@bookmark.url</a> :
+    <li>@bookmark.title : <a href="@bookmark.url">@bookmark.url</a> : @bookmark.categoryId
+
+        @***
         bookmark.category match {
             case Some(category) => category.label
             case None => None
         }
+        ***@
     </li>
     }
 </ul>

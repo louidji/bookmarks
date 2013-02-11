@@ -30,7 +30,8 @@ object Bookmarks extends Controller {
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         bookmark => {
           Logger.info("TODO Save " + bookmark)
-          Redirect(routes.Bookmarks.bookmarks()).flashing("success" -> "Title %s has been created".format(bookmark.title))
+          val newBookmark = Bookmark.save(bookmark)
+          Redirect(routes.Bookmarks.bookmarks()).flashing("success" -> "Title %s has been created".format(newBookmark.title))
         } // { Save; Ok(views.html.bookmark.summary(bookmark) }
       )
   }
@@ -43,7 +44,7 @@ object Bookmarks extends Controller {
       "title" -> nonEmptyText(4, 50),
       "url" -> nonEmptyText(4, 100),
       "details" -> optional(text(maxLength=255)),
-      "bookmark" -> optional(number)
+      "categoryId" -> optional(number)
     )(Bookmark.apply)(Bookmark.unapply)
   )
 }

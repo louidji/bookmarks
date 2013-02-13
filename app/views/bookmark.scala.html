@@ -11,18 +11,16 @@ categories: List[models.Category]
 
 @main(Messages("index.title")) {
 
-<h1>@Messages("bookmark.head")</h1>
+<h1 xmlns="http://www.w3.org/1999/html">@Messages("bookmark.head")</h1>
 @flash.get("success").map { message =>
 <div class="alert-message warning">
     <strong>Done!</strong> @message
 </div>
 }
 <!-- Formulaire de saisie : Bookmarks -->
-
 <fieldset>
     <legend>@Messages("index.bookmark.new")</legend>
     @form(action = routes.Bookmarks.create) {
-        @inputText(bookmarkForm("title"))
         @inputText(bookmarkForm("url"))
         @textarea(bookmarkForm("details"), args = 'rows -> 3, 'cols -> 50)
         @select(

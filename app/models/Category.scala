@@ -29,6 +29,10 @@ object Category {
     }
   }
 
+  def findById(id: Int): Option[Category]  = DB.withConnection {
+    implicit connection =>
+      SQL("select * from category where id = {id}").on('id -> id).as(Category.simple.singleOpt)
+  }
 
   def all(): List[Category] = DB.withConnection {
     implicit connection =>

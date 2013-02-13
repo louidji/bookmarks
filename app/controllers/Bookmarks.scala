@@ -44,7 +44,7 @@ object Bookmarks extends Controller {
       "title" -> nonEmptyText(4, 50),
       "url" -> nonEmptyText(4, 100),
       "details" -> optional(text(maxLength=255)),
-      "categoryId" -> optional(number)
+      "categoryId" -> number
     )(Bookmark.apply)(Bookmark.unapply)
   )
 }

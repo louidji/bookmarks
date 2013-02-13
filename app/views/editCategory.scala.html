@@ -1,6 +1,6 @@
 @(
-categoryForm: Form[models.Category],
-categories: List[models.Category]
+id: Int,
+categoryForm: Form[models.Category]
 )(implicit flash: play.api.mvc.Flash)
 
 @import helper._
@@ -17,19 +17,13 @@ categories: List[models.Category]
 }
 <!-- Formulaire de saisie : Catégories -->
 <fieldset>
-    <legend>@Messages("category.new")</legend>
-    @form(action = routes.Categories.create) {
+    <legend>@Messages("category.save")</legend>
+    @form(action = routes.Categories.save(id)) {
         @inputText(categoryForm("label"))
     <div class="actions">
-        <button type="submit" class="btn primary">@Messages("add")</button>
+        <button type="submit" class="btn primary">@Messages("save")</button>
     </div>
     }
 </fieldset>
-<!-- Liste des Categories -->
-<ul>
-    @for(category <- categories) {
-    <li><a href="@routes.Categories.edit(category.id.get)">@category.label</a></li>
-    }
-</ul>
 
 }

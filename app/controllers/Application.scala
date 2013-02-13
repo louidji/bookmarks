@@ -11,7 +11,7 @@ import play.api.data.Forms._
 object Application extends Controller {
 
   def index = Action {
-    Ok(views.html.index(Bookmark.all()))
+    Ok(views.html.index(Bookmark.allFull()))
   }
 
 

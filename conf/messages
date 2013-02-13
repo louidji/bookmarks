@@ -1,8 +1,9 @@
+save=Save
+add=Add
+
 index.title=Bookmarks Application
 index.head=Bookmarks Management
 
-index.category.new=New Category
-index.category.add=Add Category
 
 index.bookmark.new=New Bookmark
 index.bookmark.add=Add Bookmark
@@ -11,5 +12,14 @@ label=Category name
 title=Title
 url=URL
 details=Details
-category=Bookmarks Category
+
+
+category=Category
+category.head=Category administration
+category.save=Update Category
+category.add=Add Category
+category.new=New Category
+
+category.create.success=Category %s has been created
+category.update.success=Category %s has been updated
 

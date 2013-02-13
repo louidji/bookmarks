@@ -8,7 +8,9 @@ GET     /                               controllers.Application.index
 # Categories
 GET      /categories                    controllers.Categories.categories
 POST     /categories                    controllers.Categories.create
-#POST     /categories/:id/delete        controllers.Categories.delete(id: Int)
+GET      /category/:id/edit             controllers.Categories.edit(id: Int)
+POST     /category/:id/edit             controllers.Categories.save(id: Int)
+#POST     /category/:id/delete          controllers.Categories.delete(id: Int)
 
 # Bookmarks
 

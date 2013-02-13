@@ -1,5 +1,5 @@
 @(
-bookmarks: List[models.Bookmark]
+bookmarks: List[models.FullBookmark]
 )
 
 @import helper._
@@ -7,19 +7,24 @@ bookmarks: List[models.Bookmark]
 
 
 @main(Messages("index.title")) {
-<p></p><a href="@routes.Bookmarks.bookmarks">Messages("index.bookmark.link")</a> - <a href="@routes.Categories.categories">Messages("index.category.link")</a></p>
+<p xmlns="http://www.w3.org/1999/html"></p><a href="@routes.Bookmarks.bookmarks">Messages("index.bookmark.link")</a> - <a href="@routes.Categories.categories">Messages("index.category.link")</a></p>
 <!-- Liste des Bookmarks -->
-<ul>
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Url</th>
+    </tr>
+    </thead>
     @for(bookmark <- bookmarks) {
-    <li>@bookmark.title : <a href="@bookmark.url">@bookmark.url</a> : @bookmark.categoryId
-
-        @***
-        bookmark.category match {
-            case Some(category) => category.label
-            case None => None
-        }
-        ***@
-    </li>
+    <tr>
+        <td><a href="@routes.Categories.edit(bookmark.categoryId)">@bookmark.categoryName</a></td>
+        <td>@bookmark.title</td>
+        <td><a href="@bookmark.url">@bookmark.url</a></td>
+    </tr>
     }
-</ul>
+    <tbody>
+    </tbody>
+</table>
 }

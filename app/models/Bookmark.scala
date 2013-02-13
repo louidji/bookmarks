@@ -15,7 +15,10 @@ import java.sql.SQLException
  * Time: 00:34
  * To change this template use File | Settings | File Templates.
  */
-case class Bookmark(id: Pk[Int] = NotAssigned, title: String, url: String, details: Option[String], categoryId: Option[Int])
+case class Bookmark(id: Pk[Int] = NotAssigned, title: String, url: String, details: Option[String], categoryId: Int)
+
+case class FullBookmark(id: Pk[Int] = NotAssigned, title: String, url: String, categoryId: Int, categoryName: String)
+
 
 object Bookmark {
 
@@ -27,13 +30,30 @@ object Bookmark {
       get[String]("bookmark.title") ~
       get[String]("bookmark.url") ~
       get[Option[String]]("bookmark.details") ~
-      get[Option[Int]]("bookmark.categoryId") map {
+      get[Int]("bookmark.categoryId") map {
       case id ~ title ~ url ~ details ~ categoryId => Bookmark(id, title, url, details, categoryId)
+    }
+  }
+
+  /**
+   * Parse a Bookmark from a ResultSet
+   */
+  val full = {
+    get[Pk[Int]]("bookmark.id") ~
+      get[String]("bookmark.title") ~
+      get[String]("bookmark.url") ~
+      get[Int]("bookmark.categoryId") ~
+      get[String]("category.label") map {
+      case id ~ title ~ url ~ categoryId ~ label => FullBookmark(id, title, url, categoryId, label)
     }
   }
 
   def all(): List[Bookmark] = DB.withConnection { implicit connection =>
     SQL("select * from bookmark order by title").as(Bookmark.simple *)
+  }
+
+  def allFull(): List[FullBookmark] = DB.withConnection { implicit connection =>
+    SQL("select bookmark.*, category.label from bookmark, category where bookmark.categoryId = category.id order by title").as(Bookmark.full *)
   }
 
   def delete(id: Int) {}

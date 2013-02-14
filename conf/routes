@@ -8,15 +8,16 @@ GET     /                               controllers.Application.index
 # Categories
 GET      /categories                    controllers.Categories.categories
 POST     /categories                    controllers.Categories.create
-GET      /category/:id/edit             controllers.Categories.edit(id: Int)
-POST     /category/:id/edit             controllers.Categories.save(id: Int)
-#POST     /category/:id/delete          controllers.Categories.delete(id: Int)
+GET      /categories/:id/edit             controllers.Categories.edit(id: Int)
+POST     /categories/:id/edit             controllers.Categories.save(id: Int)
+#GET    /categories/:id/delete          controllers.Categories.delete(id: Int)
 
 # Bookmarks
 
 GET      /bookmarks                      controllers.Bookmarks.bookmarks
 POST     /bookmarks                      controllers.Bookmarks.create
-#POST     /bookmarks/:id/delete          controllers.Bookmarks.delete(id: Int)
+GET      /bookmarks/:id/edit             controllers.Bookmarks.edit(id: Int)
+GET     /bookmarks/:id/delete           controllers.Bookmarks.delete(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                   controllers.Assets.at(path="/public", file)

@@ -7,21 +7,24 @@ bookmarks: List[models.FullBookmark]
 
 
 @main(Messages("index.title")) {
-<p xmlns="http://www.w3.org/1999/html"></p><a href="@routes.Bookmarks.bookmarks">Messages("index.bookmark.link")</a> - <a href="@routes.Categories.categories">Messages("index.category.link")</a></p>
+<p xmlns="http://www.w3.org/1999/html"></p>
+<a href="@routes.Bookmarks.bookmarks">@Messages("index.bookmark.link")</a> - <a href="@routes.Categories.categories">@Messages("index.category.link")</a></p>
 <!-- Liste des Bookmarks -->
 <table>
     <thead>
     <tr>
-        <th>Category</th>
-        <th>Title</th>
-        <th>Url</th>
+        <th>@Messages("index.bookmarks.categoryName")</th>
+        <th>@Messages("index.bookmarks.title")</th>
+        <th>@Messages("index.bookmarks.url")</th>
+        <th></th>
     </tr>
     </thead>
     @for(bookmark <- bookmarks) {
     <tr>
         <td><a href="@routes.Categories.edit(bookmark.categoryId)">@bookmark.categoryName</a></td>
-        <td>@bookmark.title</td>
-        <td><a href="@bookmark.url">@bookmark.url</a></td>
+        <td><a href="@routes.Bookmarks.edit(bookmark.id.get)">@bookmark.title</a></td>
+        <td><a href="@bookmark.url" target="_blank">@bookmark.url</a></td>
+        <td><a href="@routes.Bookmarks.delete(bookmark.id.get)"><button type="button" class="btn primary">@Messages("delete")</button></a></td>
     </tr>
     }
     <tbody>

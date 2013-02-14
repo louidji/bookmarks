@@ -18,8 +18,9 @@ object Bookmarks extends Controller {
 
   def bookmarks = Action {
     implicit request =>
-    Ok(views.html.bookmark(Bookmarks.bookmarkForm, Bookmark.all(), Category.all()))
+      Ok(views.html.addBookmark(Bookmarks.bookmarkForm, Bookmark.all(), Category.all()))
   }
+
   def create = Action {
     implicit request =>
       bookmarkForm.bindFromRequest.fold(
@@ -36,14 +37,21 @@ object Bookmarks extends Controller {
       )
   }
 
-  def delete(id: Int) = TODO
+  def delete(id: Int) = Action {
+    implicit request => {
+      Bookmark.delete(id)
+      Application.index(request)
+    }
+  }
+
+  def edit(id: Int) = TODO
 
   val bookmarkForm = Form(
     mapping(
       "id" -> ignored(NotAssigned: Pk[Int]),
       "title" -> nonEmptyText(4, 50),
       "url" -> nonEmptyText(4, 100),
-      "details" -> optional(text(maxLength=255)),
+      "details" -> optional(text(maxLength = 255)),
       "categoryId" -> number
     )(Bookmark.apply)(Bookmark.unapply)
   )

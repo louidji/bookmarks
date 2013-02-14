@@ -19,29 +19,20 @@ categories: List[models.Category]
 }
 <!-- Formulaire de saisie : Bookmarks -->
 <fieldset>
-    <legend>@Messages("index.bookmark.new")</legend>
+    <legend>@Messages("bookmark.new")</legend>
     @form(action = routes.Bookmarks.create) {
+        @inputText(bookmarkForm("title"))
         @inputText(bookmarkForm("url"))
         @textarea(bookmarkForm("details"), args = 'rows -> 3, 'cols -> 50)
         @select(
             bookmarkForm("categoryId"),
             categories.toList.map(v => (v.id.toString, v.label)),
-            '_showConstraints -> false
+            '_showConstraints -> false  ,
+            '_label -> Messages("label")
         )
         <div class="actions">
-            <button type="submit" class="btn primary">@Messages("index.bookmark.add")</button>
+            <button type="submit" class="btn primary">@Messages("bookmark.add")</button>
         </div>
     }
 </fieldset>
-<!-- Liste des Bookmarks -->
-<ul>
-    @for(bookmark <- bookmarks) {
-    <li>@bookmark.title : <a href="@bookmark.url">@bookmark.url</a> :
-        bookmark.category match {
-            case Some(category) => category.label
-            case None => None
-        }
-    </li>
-    }
-</ul>
 }

@@ -53,10 +53,16 @@ object Bookmark {
   }
 
   def allFull(): List[FullBookmark] = DB.withConnection { implicit connection =>
-    SQL("select bookmark.*, category.label from bookmark, category where bookmark.categoryId = category.id order by title").as(Bookmark.full *)
+    SQL("select bookmark.*, category.label from bookmark, category where bookmark.categoryId = category.id order by category.label, bookmark.title").as(Bookmark.full *)
   }
 
-  def delete(id: Int) {}
+  def delete(id: Int) {
+    DB.withConnection {
+      implicit connection => {
+        SQL("delete bookmark where id = {id}").on('id -> id).executeUpdate()
+      }
+    }
+  }
 
   def save(bookmark: Bookmark): Bookmark = {
     if (Logger.isDebugEnabled) Logger.debug("Sauvegarde du bookmark : (" + bookmark.id + ", " + bookmark.title + ")")

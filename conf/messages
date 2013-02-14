@@ -1,17 +1,27 @@
 save=Save
 add=Add
+delete=Delete
 
 index.title=Bookmarks Application
 index.head=Bookmarks Management
 
+index.bookmark.link=Bookmarks
+index.category.link=Categories
 
-index.bookmark.new=New Bookmark
-index.bookmark.add=Add Bookmark
+index.bookmarks.categoryName=Category
+index.bookmarks.title=Title
+index.bookmarks.url=URL
 
+# Traduction form
 label=Category name
 title=Title
 url=URL
 details=Details
+
+bookmark.head=Bookmark administration
+bookmark.new=New Bookmark
+bookmark.add=Add Bookmark
+
 
 
 category=Category

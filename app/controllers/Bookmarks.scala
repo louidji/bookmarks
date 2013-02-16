@@ -27,7 +27,7 @@ object Bookmarks extends Controller {
         errors => {
           Logger.error("Error Save " + errors)
           //Redirect(routes.Application.index())
-          BadRequest(views.html.bookmark(errors, Bookmark.all(), Category.all()))
+          BadRequest(views.html.addBookmark(errors, Bookmark.all(), Category.all()))
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         bookmark => {
           Logger.info("TODO Save " + bookmark)

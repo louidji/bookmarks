@@ -30,7 +30,7 @@ object Bookmarks extends Controller {
           BadRequest(views.html.addBookmark(errors, Bookmark.all(), Category.all()))
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         bookmark => {
-          Logger.info("TODO Save " + bookmark)
+          Logger.info("Bookmarks Save " + bookmark)
           val newBookmark = Bookmark.save(bookmark)
           Redirect(routes.Bookmarks.bookmarks()).flashing("success" -> "Title %s has been created".format(newBookmark.title))
         } // { Save; Ok(views.html.bookmark.summary(bookmark) }

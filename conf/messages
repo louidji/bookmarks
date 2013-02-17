@@ -21,7 +21,7 @@ details=Details
 bookmark.head=Bookmark administration
 bookmark.new=New Bookmark
 bookmark.add=Add Bookmark
-
+bookmark.update=Update Bookmark
 
 
 category=Category

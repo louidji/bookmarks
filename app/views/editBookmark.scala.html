@@ -1,4 +1,5 @@
 @(
+id: Int,
 bookmarkForm: Form[models.Bookmark],
 categories: List[models.Category]
 )(implicit flash: play.api.mvc.Flash)
@@ -18,8 +19,8 @@ categories: List[models.Category]
 }
 <!-- Formulaire de saisie : Bookmarks -->
 <fieldset>
-    <legend>@Messages("bookmark.new")</legend>
-    @form(action = routes.Bookmarks.create) {
+    <legend>@Messages("bookmark.update")</legend>
+    @form(action = routes.Bookmarks.save(id)) {
         @inputText(bookmarkForm("title"))
         @inputText(bookmarkForm("url"))
         @textarea(bookmarkForm("details"), args = 'rows -> 3, 'cols -> 50)
@@ -30,7 +31,7 @@ categories: List[models.Category]
             '_label -> Messages("label")
         )
         <div class="actions">
-            <button type="submit" class="btn primary">@Messages("add")</button>
+            <button type="submit" class="btn primary">@Messages("save")</button>
         </div>
     }
 </fieldset>

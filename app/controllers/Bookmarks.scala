@@ -18,7 +18,7 @@ object Bookmarks extends Controller {
 
   def bookmarks = Action {
     implicit request =>
-      Ok(views.html.addBookmark(Bookmarks.bookmarkForm, Bookmark.all(), Category.all()))
+      Ok(views.html.addBookmark(Bookmarks.bookmarkForm, Category.all()))
   }
 
   def create = Action {
@@ -27,7 +27,7 @@ object Bookmarks extends Controller {
         errors => {
           Logger.error("Error Save " + errors)
           //Redirect(routes.Application.index())
-          BadRequest(views.html.addBookmark(errors, Bookmark.all(), Category.all()))
+          BadRequest(views.html.addBookmark(errors, Category.all()))
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         bookmark => {
           Logger.info("Bookmarks Save " + bookmark)
@@ -44,7 +44,15 @@ object Bookmarks extends Controller {
     }
   }
 
-  def edit(id: Int) = TODO
+  def edit(id: Int) = Action {
+    implicit request =>
+      Bookmark.findById(id) match {
+        case Some(bookmark) => Ok(views.html.editBookmark(id, Bookmarks.bookmarkForm.fill(bookmark), Category.all()))
+        case None => BadRequest
+      }
+  }
+
+  def save(id: Int) = TODO
 
   val bookmarkForm = Form(
     mapping(
@@ -55,4 +63,6 @@ object Bookmarks extends Controller {
       "categoryId" -> number
     )(Bookmark.apply)(Bookmark.unapply)
   )
+
+
 }

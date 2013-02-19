@@ -18,10 +18,17 @@ categoryForm: Form[models.Category]
 <!-- Formulaire de saisie : Catégories -->
 <fieldset>
     <legend>@Messages("category.save")</legend>
+
     @form(action = routes.Categories.save(id)) {
         @inputText(categoryForm("label"))
+
+
     <div class="actions">
         <button type="submit" class="btn primary">@Messages("save")</button>
+        <a href="@routes.Categories.delete(id)">
+            <button type="button" class="btn danger">@Messages("delete")</button>
+        </a>
+
     </div>
     }
 </fieldset>

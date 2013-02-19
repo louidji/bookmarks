@@ -52,7 +52,21 @@ object Bookmarks extends Controller {
       }
   }
 
-  def save(id: Int) = TODO
+  def save(id: Int) = Action {
+    implicit request =>
+      bookmarkForm.bindFromRequest.fold(
+        errors => {
+          Logger.error("Error Save " + errors)
+          //Redirect(routes.Application.index())
+          BadRequest(views.html.editBookmark(id, errors, Category.all()))
+        }, // BadRequest(views.html.bookmark.form(categoryErrors)),
+        bookmark => {
+          Logger.info("Bookmarks Save " + bookmark)
+          val newBookmark = Bookmark.save(Bookmark(anorm.Id(id), bookmark.title, bookmark.url, bookmark.details, bookmark.categoryId))
+          Redirect(routes.Bookmarks.edit(id)).flashing("success" -> "Title %s has been created".format(newBookmark.title))
+        } // { Save; Ok(views.html.bookmark.summary(bookmark) }
+      )
+  }
 
   val bookmarkForm = Form(
     mapping(

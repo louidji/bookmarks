@@ -76,5 +76,13 @@ object Category {
     }
   }
 
+  def delete(id: Int) {
+    DB.withConnection {
+      implicit connection => {
+        SQL("delete category where id = {id}").on('id -> id).executeUpdate()
+      }
+    }
+  }
+
 
 }

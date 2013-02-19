@@ -28,7 +28,7 @@ object Categories extends Controller {
         errors => {
           Logger.error("Error Save " + errors)
           //Redirect(routes.Application.index())
-          BadRequest(views.html.category(errors,  Category.all()))
+          BadRequest(views.html.addCategory(errors,  Category.all()))
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         category => {
           Category.save(category)

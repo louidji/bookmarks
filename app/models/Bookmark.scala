@@ -56,6 +56,11 @@ object Bookmark {
     SQL("select bookmark.*, category.label from bookmark, category where bookmark.categoryId = category.id order by category.label, bookmark.title").as(Bookmark.full *)
   }
 
+  def findById(id: Int): Option[Bookmark]  = DB.withConnection {
+    implicit connection =>
+      SQL("select * from bookmark where id = {id}").on('id -> id).as(Bookmark.simple.singleOpt)
+  }
+
   def delete(id: Int) {
     DB.withConnection {
       implicit connection => {

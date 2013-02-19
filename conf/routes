@@ -17,6 +17,7 @@ POST     /categories/:id/edit             controllers.Categories.save(id: Int)
 GET      /bookmarks                      controllers.Bookmarks.bookmarks
 POST     /bookmarks                      controllers.Bookmarks.create
 GET      /bookmarks/:id/edit             controllers.Bookmarks.edit(id: Int)
+POST     /bookmarks/:id/edit             controllers.Bookmarks.save(id: Int)
 GET     /bookmarks/:id/delete           controllers.Bookmarks.delete(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path

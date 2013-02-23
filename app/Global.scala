@@ -58,7 +58,6 @@ class AuthorizedFilter(actionNames: Seq[String]) extends Filter {
   }
 
   private def authorizationRequired(request: RequestHeader) = {
-    play.Logger.info("SEC ? : " + request)
     val actionInvoked: String = request.tags.getOrElse(play.api.Routes.ROUTE_ACTION_METHOD, "")
     actionNames.contains(actionInvoked)
   }

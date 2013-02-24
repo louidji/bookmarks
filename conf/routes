@@ -12,19 +12,19 @@ POST    /login                              controllers.Application.authenticate
 GET     /logout                             controllers.Application.logout
 
 # Categories
-GET      /categories                    controllers.Categories.categories
-POST     /categories                    controllers.Categories.create
-GET      /categories/:id/edit           controllers.Categories.edit(id: Int)
-POST     /categories/:id/edit           controllers.Categories.save(id: Int)
-GET      /categories/:id/delete         controllers.Categories.delete(id: Int)
+GET      /private/categories                    controllers.Categories.categories
+POST     /private/categories                    controllers.Categories.create
+GET      /private/categories/:id/edit           controllers.Categories.edit(id: Int)
+POST     /private/categories/:id/edit           controllers.Categories.save(id: Int)
+GET      /private/categories/:id/delete         controllers.Categories.delete(id: Int)
 
 # Bookmarks
 
-GET      /bookmarks                      controllers.Bookmarks.bookmarks
-POST     /bookmarks                      controllers.Bookmarks.create
-GET      /bookmarks/:id/edit             controllers.Bookmarks.edit(id: Int)
-POST     /bookmarks/:id/edit             controllers.Bookmarks.save(id: Int)
-GET     /bookmarks/:id/delete           controllers.Bookmarks.delete(id: Int)
+GET      /private/bookmarks                      controllers.Bookmarks.bookmarks
+POST     /private/bookmarks                      controllers.Bookmarks.create
+GET      /private/bookmarks/:id/edit             controllers.Bookmarks.edit(id: Int)
+POST     /private/bookmarks/:id/edit             controllers.Bookmarks.save(id: Int)
+GET      /private/bookmarks/:id/delete           controllers.Bookmarks.delete(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                   controllers.Assets.at(path="/public", file)

@@ -10,7 +10,7 @@ import controllers.routes
 import play.api._
 import play.api.mvc._
 
-object Global extends WithFilters(AuthorizedFilter("index", "bookmarks", "categories",  "delete", "edit", "save")) with GlobalSettings {
+object Global extends WithFilters(AuthorizedFilter("index", "private", "delete", "edit", "save")) with GlobalSettings {
   override def onStart(app: Application) {
     Logger.info("Application has started")
   }

@@ -15,26 +15,19 @@
     <header class="topbar">
 
         <h1 class="fill">
-            <div class="row-fluid">
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <ul class="nav">
-                        <li>
-                        <a href="@routes.Application.index()">
-                            @title
-                        </a>
-                        </li>
-                        <li>
-                        <a href="@routes.Application.logout()">
-                            @Messages("logout")
-                        </a>
-                        </li>
-                    </ul>
-                </div>
+            <div id="navbar" class="navbar navbar-fixed-top">
+
+                        <div class="pull-left"><a href="@routes.Application.index()">@title</a></div>
+                        <div class="pull-right">
+                            <a href="@routes.Application.logout()">
+                                @Messages("logout")
+                            </a>
+                        </div>
+
             </div>
-            </div>
+
             <!--
-            <div class="row-fluid">
+
                 <div class="span10">
                 <a href="@routes.Application.index()">
                     @title

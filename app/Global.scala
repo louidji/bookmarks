@@ -10,7 +10,7 @@ import controllers.routes
 import play.api._
 import play.api.mvc._
 
-object Global extends WithFilters(AuthorizedFilter("index", "private", "delete", "edit", "save")) with GlobalSettings {
+object Global extends WithFilters(AuthorizedFilter("private", "categories", "bookmarks", "delete", "edit", "save")) with GlobalSettings {
   override def onStart(app: Application) {
     Logger.info("Application has started")
   }
@@ -45,7 +45,6 @@ class AuthorizedFilter(actionNames: Seq[String]) extends Filter {
     if (authorizationRequired(request)) {
       /* do the auth stuff here */
       val user = username(request)
-      play.Logger.info("auth required for : <" + user + "> ?")
       user match {
         case Some(_) => next(request)
         case None => play.api.mvc.Results.Redirect(routes.Application.login)
@@ -59,6 +58,10 @@ class AuthorizedFilter(actionNames: Seq[String]) extends Filter {
 
   private def authorizationRequired(request: RequestHeader) = {
     val actionInvoked: String = request.tags.getOrElse(play.api.Routes.ROUTE_ACTION_METHOD, "")
+    //val actionInvoked: String = request.tags.getOrElse(play.api.Routes.ROUTE_PATTERN, "")
     actionNames.contains(actionInvoked)
+
+
+
   }
 }

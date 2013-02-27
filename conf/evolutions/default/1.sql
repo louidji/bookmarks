@@ -2,9 +2,8 @@
 
 # --- !Ups
 
-CREATE SEQUENCE category_id_seq;
 CREATE TABLE category (
-    id integer NOT NULL DEFAULT nextval('category_id_seq'),
+    id integer NOT NULL AUTO_INCREMENT,
     label varchar(50) UNIQUE NOT NULL,
     PRIMARY KEY (id)
 );
@@ -12,4 +11,3 @@ CREATE TABLE category (
 # --- !Downs
 
 DROP TABLE category;
-DROP SEQUENCE category_id_seq;

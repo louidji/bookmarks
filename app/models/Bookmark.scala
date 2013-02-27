@@ -64,7 +64,7 @@ object Bookmark {
   def delete(id: Int) {
     DB.withConnection {
       implicit connection => {
-        SQL("delete bookmark where id = {id}").on('id -> id).executeUpdate()
+        SQL("delete from bookmark where id = {id}").on('id -> id).executeUpdate()
       }
     }
   }

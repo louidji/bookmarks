@@ -10,6 +10,8 @@ import play.api.data.Forms._
 
 object Application extends Controller  {
 
+  def username(request: RequestHeader) = request.session.get(Security.username)
+
   val loginForm = Form(
     tuple(
       "email" -> text,
@@ -19,8 +21,8 @@ object Application extends Controller  {
     })
   )
 
-  def index = Action {
-    Ok(views.html.index(Bookmark.allFull()))
+  def index = Action { implicit request =>
+    Ok(views.html.index(Bookmark.allFull(), username(request)))
   }
 
 

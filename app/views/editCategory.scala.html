@@ -1,13 +1,14 @@
 @(
 id: Int,
-categoryForm: Form[models.Category]
+categoryForm: Form[models.Category],
+user: Option[String]
 )(implicit flash: play.api.mvc.Flash)
 
 @import helper._
 @import helper.twitterBootstrap._
 @import controllers._
 
-@main(Messages("index.title")) {
+@main(Messages("index.title"), user) {
 
 <h1>@Messages("category.head")</h1>
 @flash.get("success").map { message =>

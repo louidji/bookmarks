@@ -2,6 +2,9 @@ save=Save
 add=Add
 delete=Delete
 
+login=Login
+logout=Logout
+
 index.title=Bookmarks Application
 index.head=Bookmarks Management
 

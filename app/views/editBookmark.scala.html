@@ -1,7 +1,8 @@
 @(
 id: Int,
 bookmarkForm: Form[models.Bookmark],
-categories: List[models.Category]
+categories: List[models.Category],
+user: Option[String]
 )(implicit flash: play.api.mvc.Flash)
 
 @import helper._
@@ -9,7 +10,7 @@ categories: List[models.Category]
 @import controllers._
 
 
-@main(Messages("index.title")) {
+@main(Messages("index.title"), user) {
 
 <h1 xmlns="http://www.w3.org/1999/html">@Messages("bookmark.head")</h1>
 @flash.get("success").map { message =>

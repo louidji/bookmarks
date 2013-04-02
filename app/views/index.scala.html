@@ -1,12 +1,13 @@
 @(
-bookmarks: List[models.FullBookmark]
+bookmarks: List[models.FullBookmark],
+user: Option[String]
 )
 
 @import helper._
 @import helper.twitterBootstrap._
 
 
-@main(Messages("index.title")) {
+@main(Messages("index.title"), user) {
 <p xmlns="http://www.w3.org/1999/html"></p>
 
 <div>

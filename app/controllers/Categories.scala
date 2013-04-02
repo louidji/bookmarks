@@ -18,7 +18,7 @@ import play.api.i18n.Messages
 object Categories extends Controller {
   def categories = Action {
     implicit request =>
-      Ok(views.html.addCategory(Categories.categoryForm, Category.all()))
+      Ok(views.html.addCategory(Categories.categoryForm, Category.all(), Application.username(request)))
   }
 
 
@@ -28,7 +28,7 @@ object Categories extends Controller {
         errors => {
           Logger.error("Error Save " + errors)
           //Redirect(routes.Application.index())
-          BadRequest(views.html.addCategory(errors, Category.all()))
+          BadRequest(views.html.addCategory(errors, Category.all(), Application.username(request)))
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         category => {
           Category.save(category)
@@ -48,7 +48,7 @@ object Categories extends Controller {
   def edit(id: Int) = Action {
     implicit request =>
       Category.findById(id) match {
-        case Some(category) => Ok(views.html.editCategory(id, Categories.categoryForm.fill(category)))
+        case Some(category) => Ok(views.html.editCategory(id, Categories.categoryForm.fill(category), Application.username(request)))
         case None => BadRequest
       }
 
@@ -60,7 +60,7 @@ object Categories extends Controller {
         errors => {
           Logger.error("Error Save " + errors)
           //Redirect(routes.Application.index())
-          BadRequest(views.html.editCategory(id, errors))
+          BadRequest(views.html.editCategory(id, errors, Application.username(request)))
         }, // BadRequest(views.html.bookmark.form(categoryErrors)),
         category => {
           Category.save(Category(anorm.Id(id), category.label))
